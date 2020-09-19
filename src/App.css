@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: lightsteelblue;
+  /*display: flex; */
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+
+  margin: 0 auto;
+  min-height: 60vh;
+  height: 100%;
+  width: 100%;
+}
+/* landing page*/
+.landing-page {
+  background-color: bisque;
+  margin-top: 30%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* nav bar */
+.navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: lightgray;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.navlinks {
+  text-decoration: none;
+}
+
+/*header */
+
+header {
+  background-color: lightyellow;
+  padding: 12% 0;
+}
+
+/* homepage main page */
+
+.deck-display-container {
+  background-color: lightpink;
+  min-width: 600px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.create-new-deck {
+  background-color: linen;
+  min-height: 50px;
+  min-width: 50px;
+  text-decoration: none;
+}
+
+.decklist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.decklist h2 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* study cards page */
+.cards-display-container {
+  background-color: mintcream;
+}
+
+/* edit deck /create deck form */
+
+.edit-deck-page {
+  padding-top: 100px;
+}
+
+.card-input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-q-a {
+  display: flex;
+  align-items: center;
+
+  padding: 10px;
+}
+
+.card-q-a label {
+  padding: 5px;
+}
