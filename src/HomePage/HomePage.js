@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./HomePage.css";
 import DeckList from "../DeckList/DeckList";
 import Navbar from "../NavBar/NavBar";
 import { Link } from "react-router-dom";

@@ -25,7 +25,9 @@ class App extends Component {
           />
           <Route exact path="/signup" component={SignupForm} />
           <Route exact path="/login" component={LoginForm} />
+
           <Route exact path="/editdeck" component={EditDeckPage} />
+          {/* will render study component,path is deckId*/}
           <Route
             exact
             path="/exampledeck/:id"

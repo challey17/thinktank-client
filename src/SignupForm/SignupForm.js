@@ -3,7 +3,6 @@ import ValidationError from "./ValidationError";
 
 // this is a template from checkpoint 17
 //Organizing Your React Code
-//Should the state be here? or in App
 
 class SignupForm extends Component {
   constructor(props) {
@@ -89,9 +88,8 @@ class SignupForm extends Component {
     return (
       <form className="registration" onSubmit={(e) => this.handleSubmit(e)}>
         <h2>Register</h2>
-        <div className="registration__hint">* required field</div>
         <div className="form-group">
-          <label htmlFor="name">Name *</label>
+          <label htmlFor="name">Username </label>
           <input
             type="text"
             className="registration__control"
@@ -102,7 +100,7 @@ class SignupForm extends Component {
           {this.state.name.touched && <ValidationError message={nameError} />}
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password *</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className="registration__control"
@@ -118,7 +116,7 @@ class SignupForm extends Component {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="repeatPassword">Repeat Password *</label>
+          <label htmlFor="repeatPassword">Repeat Password</label>
           <input
             type="password"
             className="registration__control"
@@ -132,9 +130,6 @@ class SignupForm extends Component {
         </div>
 
         <div className="registration__button__group">
-          <button type="reset" className="registration__button">
-            Cancel
-          </button>
           <button
             type="submit"
             className="registration__button"
@@ -144,7 +139,7 @@ class SignupForm extends Component {
               this.validateRepeatPassword()
             }
           >
-            Save
+            Register
           </button>
         </div>
       </form>
