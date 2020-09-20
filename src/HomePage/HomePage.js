@@ -28,7 +28,7 @@ export default class HomePage extends Component {
             </Link>
 
             <div className="decklist">
-              <DeckList data={this.props.data} />
+              <DeckList />
             </div>
           </section>
         </main>

@@ -1,3 +1,5 @@
+// NO CAPS, DB PUTS EVERYTHING TO LOWERCASE
+
 const users = [
   {
     id: 1,
@@ -66,6 +68,17 @@ const cards = [
     deckId: 54321,
     question: "question number five",
     answer: "answer number five",
+  },
+];
+
+//
+const progress = [
+  {
+    id: 1,
+    user_id: 2,
+    deck_id: 12345,
+    difficulty: 0,
+    modified: "",
   },
 ];
 
