@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <div className="navbar">
-      <h1>ThinkTank</h1>
-      <Link to={`/home`} className=" button navlinks">
-        Home
+      <Link to={`/home`} className="navlinks">
+        ThinkTank
       </Link>
-      <Link to={`/`} className=" button navlinks">
+      <Link to={`/`} className="navlinks">
         {" "}
         Logout
       </Link>

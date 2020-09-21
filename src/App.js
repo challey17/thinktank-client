@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Context.Provider value={this.state}>
-        <main className="App">
+        <div className="App">
           <Route exact path="/" component={LandingPage} />
           <Route
             exact
@@ -33,7 +33,7 @@ class App extends Component {
             path="/exampledeck/:id"
             render={(props) => <Cards data={data} {...props} />}
           />
-        </main>
+        </div>
       </Context.Provider>
     );
   }

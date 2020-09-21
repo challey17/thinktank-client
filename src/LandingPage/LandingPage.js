@@ -6,11 +6,11 @@ export default function LandingPage() {
     <div className="landing-page">
       <h2>ThinkTank</h2>
       <p>This is a blurb about the app that will be short and sweet.</p>
-      <Link to="/login" className="button login-button">
+      <Link to="/login" className="landing-button">
         {" "}
         login
       </Link>
-      <Link to="/signup" className="button signup-button">
+      <Link to="/signup" className="landing-button">
         {" "}
         sign-up
       </Link>

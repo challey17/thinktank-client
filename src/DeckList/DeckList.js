@@ -6,6 +6,7 @@ export default class DeckList extends React.Component {
     return (
       <div>
         <Deck />
+        <Deck />
       </div>
     );
   }
