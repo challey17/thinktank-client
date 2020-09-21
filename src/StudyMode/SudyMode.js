@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../NavBar/NavBar";
+import Card from "../Card/Card";
 
-export default class Cards extends React.Component {
+export default class StudyMode extends React.Component {
   render() {
     return (
       <div>
         <Navbar />
-        <h2>question</h2>
-        <h2>answer</h2>
+        <Card />
       </div>
     );
   }

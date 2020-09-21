@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import LandingPage from "./LandingPage/LandingPage";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginForm from "./LoginForm/LoginForm";
-import Cards from "./Cards/Cards";
+import StudyMode from "./StudyMode/SudyMode";
 import "./App.css";
 import Homepage from "./HomePage/HomePage";
 import data from "./STORE";
@@ -31,7 +31,7 @@ class App extends Component {
           <Route
             exact
             path="/exampledeck/:id"
-            render={(props) => <Cards data={data} {...props} />}
+            render={(props) => <StudyMode data={data} {...props} />}
           />
         </div>
       </Context.Provider>
