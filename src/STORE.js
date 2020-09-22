@@ -29,11 +29,6 @@ const decks = [
     userId: 1,
     deckname: " userONE example deck2",
   },
-  {
-    id: 123456,
-    userId: 1,
-    deckname: "userONE example deck3",
-  },
 ];
 
 const cards = [
@@ -49,20 +44,7 @@ const cards = [
     question: "question number two",
     answer: "answer number two",
   },
-  {
-    id: 22,
-    deckId: 12345,
-    question:
-      "question number three Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
-    answer: "answer number three",
-  },
-  {
-    id: 23,
-    deckId: 12345,
-    question: "question number four",
-    answer:
-      "answer number four Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-  },
+
   {
     id: 24,
     deckId: 54321,
