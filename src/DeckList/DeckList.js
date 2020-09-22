@@ -1,13 +1,17 @@
 import React from "react";
 import Deck from "../Deck/Deck";
+import Context from "../Context";
 
 export default class DeckList extends React.Component {
+  static contextType = Context;
+
   render() {
     return (
-      <div>
-        <Deck />
-        <Deck />
-      </div>
+      <ul>
+        {this.context.data.decks.map((deck, i) => (
+          <Deck deck={deck} key={i} />
+        ))}
+      </ul>
     );
   }
 }

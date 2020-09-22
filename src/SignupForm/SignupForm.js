@@ -3,7 +3,7 @@ import ValidationError from "./ValidationError";
 
 // this is a template from checkpoint 17
 //Organizing Your React Code
-
+// use email for username
 class SignupForm extends Component {
   constructor(props) {
     super(props);

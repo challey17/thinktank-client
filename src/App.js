@@ -4,35 +4,36 @@ import { Route } from "react-router-dom";
 import LandingPage from "./LandingPage/LandingPage";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginForm from "./LoginForm/LoginForm";
-import StudyMode from "./StudyMode/SudyMode";
+import StudyMode from "./StudyMode/StudyMode";
 import "./App.css";
 import Homepage from "./HomePage/HomePage";
 import data from "./STORE";
-import EditDeckPage from "./EditDeck/EditDeckPage";
+import DeckForm from "./DeckForm/DeckForm";
 import Context from "./Context";
 class App extends Component {
-  state = { data };
+  //all methods live in state, called in other components
+  //add card, edit card, delete card
+  //add edit delete deck
+  //reveal answer, rate(move to next card onClick)
+  state = {
+    data: { data },
+    loggedIn: false,
+    // addCard: (card) => {
+    // this.setState({ cards: [...this.state.data.cards, card]})
+    //}
+  };
 
   render() {
     return (
       <Context.Provider value={this.state}>
         <div className="App">
           <Route exact path="/" component={LandingPage} />
-          <Route
-            exact
-            path="/home"
-            render={(props) => <Homepage data={data} />}
-          />
-          <Route exact path="/signup" component={SignupForm} />
-          <Route exact path="/login" component={LoginForm} />
-
-          <Route exact path="/editdeck" component={EditDeckPage} />
-          {/* will render study component,path is deckId*/}
-          <Route
-            exact
-            path="/exampledeck/:id"
-            render={(props) => <StudyMode data={data} {...props} />}
-          />
+          <Route path="/home" render={(props) => <Homepage data={data} />} />
+          <Route path="/signup" component={SignupForm} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/createdeck" component={DeckForm} />
+          <Route path="/editdeck/:id" component={DeckForm} />
+          <Route path="/study/:id" component={StudyMode} />
         </div>
       </Context.Provider>
     );

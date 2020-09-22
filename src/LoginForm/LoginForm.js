@@ -5,7 +5,7 @@ export default function LoginForm() {
     <form className="login">
       <h2>Login</h2>
       <div className="form-group">
-        <label htmlFor="name">Username </label>
+        <label htmlFor="name">Username</label>
         <input type="text" className="login__control" name="name" id="name" />
       </div>
       <div className="form-group">

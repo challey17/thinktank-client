@@ -1,19 +1,18 @@
 import React from "react";
 import Navbar from "../NavBar/NavBar";
-////THIS IS THE ONLY COMPONENT THAT WILL UPDATE STATE//
-//input for deckname, question/front, answer/back
-// not sure if i should use textarea or input for question, answer
-
+//THIS COMPONENT IS FOR BOTH /createdeck and /editdeck/:id ROUTES, that is why using match.params
 // if editing an existing deck, populate with existing data
-export default function EditDeckPage() {
+export default function DeckForm(props) {
+  // import context
+  //if
+  const { id = 0 } = props.match.params;
   return (
     <div className="edit-deck-page">
-      <nav>
-        <Navbar />
-      </nav>
+      <Navbar />
+
       <form>
-        <h2>Create Deck/Edit Deck</h2>
-        <label htmlFor="deck-title">Deck Title *</label>
+        <h2>{id ? "Edit Deck" : "Create Deck"}</h2>
+        <label htmlFor="deck-title">Deck Title</label>
         <input
           type="text"
           className="deck-title-input"
@@ -65,6 +64,10 @@ export default function EditDeckPage() {
             </button>
           </div>
         </div>
+        <button type="submit" className="add-new-card">
+          {" "}
+          New Card
+        </button>
         <button type="submit" className="save-deck-info">
           {" "}
           Save Changes
