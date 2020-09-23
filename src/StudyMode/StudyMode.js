@@ -11,7 +11,7 @@ export default class StudyMode extends React.Component {
       <div>
         <Navbar />
         <ul>
-          {this.context.data.cards
+          {this.context.data.data.cards
             .filter(
               (card) => card.deckId === Number(this.props.match.params.id)
             )

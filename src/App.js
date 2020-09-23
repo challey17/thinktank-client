@@ -28,7 +28,7 @@ class App extends Component {
       <Context.Provider value={this.state}>
         <div className="App">
           <Route exact path="/" component={LandingPage} />
-          <Route path="/home" render={(props) => <Homepage data={data} />} />
+          <Route path="/home" component={Homepage} />
           <Route path="/signup" component={SignupForm} />
           <Route path="/login" component={LoginForm} />
           <Route path="/createdeck" component={DeckForm} />
