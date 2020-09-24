@@ -15,12 +15,13 @@ class App extends Component {
   //add card, edit card, delete card
   //add edit delete deck
   //reveal answer, rate(move to next card onClick)
+  // addCard: (card) => {
+  // this.setState({ cards: [...this.state.data.cards, card]})
+  //}
   state = {
     data: { data },
     loggedIn: false,
-    // addCard: (card) => {
-    // this.setState({ cards: [...this.state.data.cards, card]})
-    //}
+    //updateRating:
   };
 
   render() {

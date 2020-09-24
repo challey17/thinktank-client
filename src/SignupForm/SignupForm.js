@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import ValidationError from "./ValidationError";
 
-// this is a template from checkpoint 17
-//Organizing Your React Code
-// use email for username
+// use REACT checkpoint 17
+// https://courses.thinkful.com/react-v1/checkpoint/17
+//controlled form validation
+
 class SignupForm extends Component {
   constructor(props) {
     super(props);

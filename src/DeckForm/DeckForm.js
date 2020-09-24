@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../NavBar/NavBar";
 import Context from "../Context";
-
+// save
 export default class DeckForm extends React.Component {
   static contextType = Context;
 
@@ -12,7 +12,7 @@ export default class DeckForm extends React.Component {
     //callback for filter method
     // '===' doesn't work but getting console warning
     const filterCards = (card) => {
-      return card.deckId == this.props.match.params.id;
+      return card.deckId === parseInt(this.props.match.params.id);
     };
     const existingCardsInDeck = this.context.data.data.cards.filter(
       filterCards
@@ -62,7 +62,7 @@ export default class DeckForm extends React.Component {
           <ul className="card-inputs">
             {cardItem}
             {/* ask Tj about this key */}
-            <li key={cardItem[id]} className="card-input-field">
+            <li key="new-key" className="card-input-field">
               <div className="card-q-a">
                 <label htmlFor="card-question"> Question</label>
                 <textarea

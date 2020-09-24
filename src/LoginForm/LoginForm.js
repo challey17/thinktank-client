@@ -1,5 +1,8 @@
 import React from "react";
 
+// use REACT checkpoint 17
+// https://courses.thinkful.com/react-v1/checkpoint/17
+//controlled form validation
 export default function LoginForm() {
   return (
     <form className="login">
