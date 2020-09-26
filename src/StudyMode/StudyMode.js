@@ -13,7 +13,8 @@ export default class StudyMode extends React.Component {
         <ul>
           {this.context.cards
             .filter(
-              (card) => card.deckId === Number(this.props.match.params.id)
+              // can also card.deckId.toString() === this.props.match.params.id
+              (card) => card.deckId == this.props.match.params.id
             )
             .map((card, i) => (
               <Card card={card} key={i} />
