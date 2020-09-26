@@ -5,25 +5,29 @@ import Context from "../Context";
 
 export default class StudyMode extends React.Component {
   static contextType = Context;
+  // filter all cards by deckId
+  filterCards = () => {
+    const { cards } = this.context;
+    const { id } = this.props.match.params;
+    return cards.filter((card) => card.deckId == id);
+  };
+  // map through cards matching deckId
+  renderCards = (cards) => {
+    return cards.map((card, i) => <Card card={card} key={i} />);
+  };
 
   render() {
-    const emptyDeckMessage = <p>no cards in deck</p>;
-    console.log(this.context.cards.length);
+    const { cards } = this.context;
+    //if cards have length, filter cards, else set to empty array
+    const filteredCards = cards.length > 0 ? this.filterCards() : [];
     return (
       <div>
         <Navbar />
-        <ul>
-          {emptyDeckMessage}
-          {this.context.cards
-            .filter(
-              // can also card.deckId.toString() === this.props.match.params.id
-              (card) => card.deckId == this.props.match.params.id
-            )
-
-            .map((card, i) => (
-              <Card card={card} key={i} />
-            ))}
-        </ul>
+        {filteredCards.length > 0 ? (
+          <ul>{this.renderCards(filteredCards)}</ul>
+        ) : (
+          <p>No cards in deck</p>
+        )}
       </div>
     );
   }
