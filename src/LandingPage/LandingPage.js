@@ -5,7 +5,10 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       <h2>ThinkTank</h2>
-      <p>This is a blurb about the app that will be short and sweet.</p>
+      <p>
+        Make what you learn really stick. Create and study flaschcards to retain
+        what you know or solidify new concepts .
+      </p>
       <Link to="/login" className="landing-button">
         {" "}
         login
