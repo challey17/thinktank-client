@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import ValidationError from "./ValidationError";
 
-// use REACT checkpoint 17
-// https://courses.thinkful.com/react-v1/checkpoint/17
-//controlled form validation
-
 class SignupForm extends Component {
   state = {
     name: {

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// use REACT checkpoint 17
-// https://courses.thinkful.com/react-v1/checkpoint/17
-//controlled form validation
+
 class LoginForm extends Component {
   state = {
     name: {
