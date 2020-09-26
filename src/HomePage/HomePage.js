@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default class HomePage extends Component {
   render() {
-    //const data = this.props.data;
     return (
       <div>
         <nav>
@@ -16,7 +15,7 @@ export default class HomePage extends Component {
             <p>what content here?</p>
           </header>
           <section className="deck-display-container">
-            <h2>Decks (2)</h2>
+            <h2>Decks </h2>
             <DeckList />
             <Link to="/createdeck" className="create-new-deck">
               create new deck

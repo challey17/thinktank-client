@@ -17,13 +17,7 @@ const decks = [
   {
     id: 123,
     userId: 1,
-    deckname: " userONE example deck1",
-  },
-
-  {
-    id: 12345,
-    userId: 1,
-    deckname: " userONE example deck2",
+    deckname: "example deck",
   },
 ];
 
