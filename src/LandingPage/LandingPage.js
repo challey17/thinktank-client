@@ -14,6 +14,9 @@ export default function LandingPage() {
         {" "}
         sign-up
       </Link>
+      <p>
+        <Link to="/home">Browse Decks without Logging In</Link>
+      </p>
     </div>
   );
 }

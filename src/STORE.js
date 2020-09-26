@@ -42,7 +42,7 @@ const cards = [
   },
 ];
 
-//
+/*
 const progress = [
   {
     id: 1,
@@ -51,10 +51,6 @@ const progress = [
     difficulty: 0,
     modified: "",
   },
-];
+];*/
 
-let currentDeck = {};
-
-const data = { users, decks, cards, currentDeck };
-
-export default data;
+module.exports = { users, decks, cards };

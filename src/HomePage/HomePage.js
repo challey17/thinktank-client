@@ -18,7 +18,7 @@ export default class HomePage extends Component {
           <section className="deck-display-container">
             <h2>Decks (2)</h2>
             <DeckList />
-            <Link to={"/createdeck"} className="create-new-deck">
+            <Link to="/createdeck" className="create-new-deck">
               create new deck
             </Link>
           </section>

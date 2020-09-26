@@ -6,23 +6,20 @@ import ValidationError from "./ValidationError";
 //controlled form validation
 
 class SignupForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: {
-        value: "",
-        touched: false,
-      },
-      password: {
-        value: "",
-        touched: false,
-      },
-      repeatPassword: {
-        value: "",
-        touched: false,
-      },
-    };
-  }
+  state = {
+    name: {
+      value: "",
+      touched: false,
+    },
+    password: {
+      value: "",
+      touched: false,
+    },
+    repeatPassword: {
+      value: "",
+      touched: false,
+    },
+  };
 
   updateName(name) {
     this.setState({ name: { value: name, touched: true } });
@@ -46,6 +43,8 @@ class SignupForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { name, password, repeatPassword } = this.state;
+
+    window.location = "/home";
 
     console.log("Name: ", name.value);
     console.log("Password: ", password.value);

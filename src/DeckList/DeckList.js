@@ -8,7 +8,7 @@ export default class DeckList extends React.Component {
   render() {
     return (
       <ul>
-        {this.context.data.data.decks.map((deck, i) => (
+        {this.context.decks.map((deck, i) => (
           <Deck deck={deck} key={i} />
         ))}
       </ul>

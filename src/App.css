@@ -178,3 +178,9 @@ li {
 .difficulty-rating {
   width: 80px;
 }
+
+.card-q-a {
+  padding: 20px;
+  margin: 20px;
+  border-bottom: 2px solid black;
+}
