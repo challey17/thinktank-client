@@ -4,29 +4,28 @@ import Context from "../Context";
 export default class Card extends Component {
   static contextType = Context;
 
-  state = {};
-  // 3 states
-  // notshown, questionshowmode, answershownmode
-  //render jsx for each state
-  showCardAnswer = (card) => {
-    this.setState(
-      { answer_showing: true }
-      // {question_showing:false}
-    );
+  state = {
+    // 3 states
+    // notShown, showQuestionMode, showAnswerMode
+    //render jsx for each state
+    //notshown: this.props.card,
   };
 
-  //mapCards
+  showCardAnswer = (card) => {
+    this.setState({ answer_showing: true });
+  };
 
   render() {
     //all cards with matching deckId from StudyMode
-    const { card, isShown } = this.props;
+    const { card } = this.props;
 
-    console.log(card);
+    console.log(this.props);
     card.answer_showing = false;
-    card.question_showing = true;
-    if (!isShown) {
-      return null;
-    }
+
+    const ratingOnClick = (e) => {
+      this.props.goToNextCard();
+    };
+
     return (
       <li key={card.id} className="card-container">
         <div className="card container-front">
@@ -44,13 +43,13 @@ export default class Card extends Component {
             <div className="rating-container">
               <p className="rating-hint">How well do you know this?</p>
               <div className="rating-button-container">
-                <button className="difficulty-rating">
+                <button className="difficulty-rating" onClick={ratingOnClick}>
                   1 <p>not at all</p>
                 </button>
-                <button className="difficulty-rating">
+                <button className="difficulty-rating" onClick={ratingOnClick}>
                   2 <p>almost</p>
                 </button>
-                <button className="difficulty-rating">
+                <button className="difficulty-rating" onClick={ratingOnClick}>
                   3 <p>perfectly</p>
                 </button>
               </div>

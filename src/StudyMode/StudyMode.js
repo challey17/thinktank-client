@@ -6,7 +6,6 @@ import Context from "../Context";
 export default class StudyMode extends React.Component {
   static contextType = Context;
 
-  //isShown={shownCardIndex === i}
   state = {
     shownCardIndex: 0,
   };
@@ -20,9 +19,15 @@ export default class StudyMode extends React.Component {
 
   // map through cards matching deckId
   renderCards = (cards) => {
-    return cards.map((card, i) => (
-      <Card card={card} key={i} isShown={this.state.shownCardIndex === i} />
-    ));
+    const goToNextCard = (i) => {
+      const onLastCard = i === cards.length - 1;
+      //if on last card, index = 0 , else index + 1
+      this.setState({ shownCardIndex: onLastCard ? 0 : i + 1 });
+    };
+    return cards.map((card, i) => {
+      if (this.state.shownCardIndex !== i) return null;
+      return <Card card={card} key={i} goToNextCard={() => goToNextCard(i)} />;
+    });
   };
 
   render() {
