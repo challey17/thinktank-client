@@ -5,15 +5,24 @@ import Context from "../Context";
 
 export default class StudyMode extends React.Component {
   static contextType = Context;
+
+  //isShown={shownCardIndex === i}
+  state = {
+    shownCardIndex: 0,
+  };
+
   // filter all cards by deckId
   filterCards = () => {
     const { cards } = this.context;
     const { id } = this.props.match.params;
     return cards.filter((card) => card.deckId == id);
   };
+
   // map through cards matching deckId
   renderCards = (cards) => {
-    return cards.map((card, i) => <Card card={card} key={i} />);
+    return cards.map((card, i) => (
+      <Card card={card} key={i} isShown={this.state.shownCardIndex === i} />
+    ));
   };
 
   render() {

@@ -5,16 +5,28 @@ export default class Card extends Component {
   static contextType = Context;
 
   state = {};
-
+  // 3 states
+  // notshown, questionshowmode, answershownmode
+  //render jsx for each state
   showCardAnswer = (card) => {
-    this.setState({ answer_showing: true });
+    this.setState(
+      { answer_showing: true }
+      // {question_showing:false}
+    );
   };
 
+  //mapCards
+
   render() {
-    const { card } = this.props;
-    card.answer_showing = false;
+    //all cards with matching deckId from StudyMode
+    const { card, isShown } = this.props;
 
     console.log(card);
+    card.answer_showing = false;
+    card.question_showing = true;
+    if (!isShown) {
+      return null;
+    }
     return (
       <li key={card.id} className="card-container">
         <div className="card container-front">
