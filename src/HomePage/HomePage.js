@@ -7,9 +7,6 @@ export default class HomePage extends Component {
   render() {
     return (
       <div>
-        <nav>
-          <Navbar />
-        </nav>
         <main className="homepage-body">
           <header>
             <p>what content here?</p>

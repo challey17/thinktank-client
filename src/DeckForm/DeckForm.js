@@ -4,6 +4,9 @@ import Navbar from "../NavBar/NavBar";
 import Context from "../Context";
 import { v4 as uuidv4 } from "uuid";
 
+import config from "../config";
+import TokenService from "../services/token-service";
+
 export default class DeckForm extends React.Component {
   static contextType = Context;
 
@@ -18,7 +21,7 @@ export default class DeckForm extends React.Component {
 
   componentDidMount() {
     const { id = 0 } = this.props.match.params;
-    const deck = id ? this.context.decks.find((d) => d.id == id) : {};
+    const deck = id ? this.context.decks.find((d) => d.id === Number(id)) : {};
 
     this.setState({
       ...deck,
@@ -82,12 +85,21 @@ export default class DeckForm extends React.Component {
       // fetch post to /api/decks
       const newDeck = {
         deckname: this.state.deckname,
-        id: uuidv4(),
-        userId: this.context.users[0].id,
       };
-      this.setState({ id: newDeck.id }, () => {
-        this.context.newDeck(newDeck);
-      });
+      fetch(`${config.API_ENDPOINT}/decks`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(newDeck),
+      })
+        .then((res) => res.json())
+        .then((deck) => {
+          this.setState({ id: deck.id }, () => {
+            this.context.newDeck(deck);
+          });
+        });
     }
   };
 
@@ -136,7 +148,6 @@ export default class DeckForm extends React.Component {
 
     return (
       <div className="edit-deck-page">
-        <Navbar />
         <form onSubmit={this.handleSubmit}>
           <h2>{id ? "Edit Deck" : "Create Deck"}</h2>
           <label htmlFor="deckname">Deck Title</label>

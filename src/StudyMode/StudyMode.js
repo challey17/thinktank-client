@@ -14,7 +14,7 @@ export default class StudyMode extends React.Component {
   filterCards = () => {
     const { cards } = this.context;
     const { id } = this.props.match.params;
-    return cards.filter((card) => card.deckId == id);
+    return cards.filter((card) => card.deckId === Number(id));
   };
 
   // map through cards matching deckId
@@ -38,7 +38,12 @@ export default class StudyMode extends React.Component {
       <div>
         <Navbar />
         {filteredCards.length > 0 ? (
-          <ul>{this.renderCards(filteredCards)}</ul>
+          <>
+            <h2>
+              Card {this.state.shownCardIndex + 1} of {filteredCards.length}
+            </h2>
+            <ul>{this.renderCards(filteredCards)}</ul>
+          </>
         ) : (
           <p>No cards in deck</p>
         )}

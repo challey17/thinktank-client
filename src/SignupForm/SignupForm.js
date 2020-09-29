@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ValidationError from "./ValidationError";
+import AuthApiService from "../services/auth-api-service";
 
 class SignupForm extends Component {
   state = {
@@ -38,13 +39,11 @@ class SignupForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { name, password, repeatPassword } = this.state;
+    const { name, password } = this.state;
 
-    window.location = "/home";
-
-    console.log("Name: ", name.value);
-    console.log("Password: ", password.value);
-    console.log("Repeat Password: ", repeatPassword.value);
+    AuthApiService.postUser(name.value, password.value).then(() => {
+      this.props.history.push("/login");
+    });
   }
 
   validateName() {
