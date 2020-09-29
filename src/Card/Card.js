@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Context from "../Context";
 
+// weighted random for card rating
+//https://stackoverflow.com/questions/30203362/how-to-generate-a-random-weighted-distribution-of-elements
+
 export default class Card extends Component {
   static contextType = Context;
 
-  state = {
-    // 3 states
-    // notShown, showQuestionMode, showAnswerMode
-    //render jsx for each state
-    //notshown: this.props.card,
-  };
+  state = {};
 
   showCardAnswer = (card) => {
     this.setState({ answer_showing: true });

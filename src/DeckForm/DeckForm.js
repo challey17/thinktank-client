@@ -150,7 +150,7 @@ export default class DeckForm extends React.Component {
           />
           <button type="submit" className="save-deck-info">
             {" "}
-            Save Changes
+            Save
           </button>
           <h2>Cards</h2>
           <ul className="card-inputs">
@@ -185,10 +185,7 @@ export default class DeckForm extends React.Component {
                       }
                     />
                   </p>
-                  <button
-                    onClick={() => this.addCard()}
-                    className="delete-card"
-                  >
+                  <button onClick={() => this.addCard()} className="add-card">
                     {" "}
                     Add
                   </button>
