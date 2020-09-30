@@ -1,6 +1,6 @@
 import React from "react";
 import Deck from "../Deck/Deck";
-import Context from "../Context";
+import Context from "../../Context";
 
 export default class DeckList extends React.Component {
   static contextType = Context;

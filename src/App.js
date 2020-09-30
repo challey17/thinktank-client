@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import LandingPage from "./LandingPage/LandingPage";
-import SignupForm from "./SignupForm/SignupForm";
+import LandingPage from "./components/LandingPage/LandingPage";
+import SignupForm from "./components/SignupForm/SignupForm";
 import LoginForm from "./LoginForm/LoginForm";
-import StudyMode from "./StudyMode/StudyMode";
+import StudyMode from "./components/StudyMode/StudyMode";
 import Navbar from "./NavBar/NavBar";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import "./App.css";
-import Homepage from "./HomePage/HomePage";
+import Homepage from "./components/HomePage/HomePage";
 import { users, decks, cards } from "./STORE";
 import DeckForm from "./DeckForm/DeckForm";
 import Context from "./Context";
@@ -76,12 +76,12 @@ class App extends Component {
             </nav>
           </header>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/home" component={Homepage} />
+          <PrivateRoute path="/home" component={Homepage} />
           <Route path="/signup" component={SignupForm} />
           <Route path="/login" component={LoginForm} />
           <PrivateRoute path="/createdeck" component={DeckForm} />
-          <Route path="/editdeck/:id" component={DeckForm} />
-          <Route path="/study/:id" component={StudyMode} />
+          <PrivateRoute path="/editdeck/:id" component={DeckForm} />
+          <PrivateRoute path="/study/:id" component={StudyMode} />
         </div>
       </Context.Provider>
     );

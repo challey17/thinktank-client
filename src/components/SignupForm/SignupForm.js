@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ValidationError from "./ValidationError";
-import AuthApiService from "../services/auth-api-service";
+import AuthApiService from "../../services/auth-api-service";
 
 class SignupForm extends Component {
   state = {
