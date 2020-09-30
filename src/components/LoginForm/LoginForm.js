@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import TokenService from "../../services/token-service";
+import AuthApiService from "../../services/auth-api-service";
 import Context from "../../Context";
+import { API_ENDPOINT } from "../../config";
 
 class LoginForm extends Component {
   static contextType = Context;
@@ -12,12 +14,20 @@ class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { name, password } = this.state;
-    TokenService.saveAuthToken(TokenService.makeBasicAuthToken(name, password));
-    // make a post fetch call
-    // TokenService.saveAuthToken(res.authToken)
-    // make a get fetch call with the authTOken
-    this.context.login(1);
-    this.props.history.push("/home");
+
+    AuthApiService.postLogin(name, password).then((res) => {
+      TokenService.saveAuthToken(res.authToken);
+      fetch(`${API_ENDPOINT}/users`, {
+        headers: {
+          Authorization: `Bearer ${res.authToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          this.context.login(user.id);
+          this.props.history.push("/home");
+        });
+    });
   }
   render() {
     return (

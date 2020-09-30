@@ -11,26 +11,34 @@ export default class DeckForm extends React.Component {
 
   state = {
     deckname: "",
-    id: null,
+    id: 0,
     userId: null,
     cards: [],
+    editedCards: [],
     newCardQuestion: "",
     newCardAnswer: "",
   };
 
-  componentDidMount() {
-    const { id = 0 } = this.props.match.params;
-    const deck = id ? this.context.decks.find((d) => d.id === Number(id)) : {};
-
-    this.setState({
-      ...deck,
-      cards: this.context.cards.filter(this.filterCards),
-    });
+  getCards(deck) {
+    console.log("getting cards for deck...");
+    fetch(
+      `${config.API_ENDPOINT}/cards/${Number(this.props.match.params.id)}`,
+      {
+        method: "get",
+        headers: {
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((cards) => {
+        this.context.setCards(cards);
+        this.setState({
+          ...deck,
+          cards,
+        });
+      });
   }
-
-  filterCards = (card) => {
-    return card.deckId === parseInt(this.props.match.params.id);
-  };
 
   updateCard = (id, key, value) => {
     const cards = this.state.cards.map((c) => {
@@ -39,18 +47,33 @@ export default class DeckForm extends React.Component {
       }
       return c;
     });
-    // fetch put to /api/cards/id send in the body {key:value}
-    this.setState({ cards }, () => {
-      this.context.updateCard(id, key, value);
-    });
+
+    const { editedCards } = this.state;
+    if (!editedCards.includes(id)) {
+      editedCards.push(id);
+    }
+
+    this.setState({ cards, editedCards });
+  };
+
+  saveCard = (id) => {
+    const card = this.state.cards.find((c) => c.id === id);
+    if (card) {
+      // fetch put with that card PUT
+      this.setState({
+        editedCards: this.state.editedCards.filter((cid) => cid !== id),
+      });
+    }
   };
 
   removeCard = (id) => {
-    // fetch delete to /api/cards/id
     // then
 
-    this.setState({ cards: this.state.cards.filter((c) => c.id !== id) }, () =>
-      this.context.removeCard(id)
+    this.setState(
+      { cards: this.state.cards.filter((c) => c.id !== id) },
+      () => {
+        // fetch delete to /api/cards/id
+      }
     );
   };
 
@@ -64,34 +87,34 @@ export default class DeckForm extends React.Component {
     };
     // fetch post to /api/cards to create the card, so you have the id
     // then run setState to add it in
-    // then run this.context.addCard with the res
-    this.setState(
-      {
-        cards: [...this.state.cards, newCard],
-        newCardAnswer: "",
-        newCardQuestion: "",
-      },
-      () => this.context.addCard(newCard)
-    );
+    this.setState({
+      cards: [...this.state.cards, newCard],
+      newCardAnswer: "",
+      newCardQuestion: "",
+    });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.id) {
-      // fetch put to /api/decks/id to save the title change
-      this.context.updateDeck(this.state.id, this.state.deckname);
+      fetch(`${config.API_ENDPOINT}/decks/${this.state.id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify({ deckname: this.state.deckname }),
+      }).then(() => {
+        this.context.updateDeck(this.state.id, this.state.deckname);
+      });
     } else {
-      // fetch post to /api/decks
-      const newDeck = {
-        deckname: this.state.deckname,
-      };
       fetch(`${config.API_ENDPOINT}/decks`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${TokenService.getAuthToken()}`,
         },
-        body: JSON.stringify(newDeck),
+        body: JSON.stringify({ deckname: this.state.deckname }),
       })
         .then((res) => res.json())
         .then((deck) => {
@@ -103,47 +126,65 @@ export default class DeckForm extends React.Component {
   };
 
   render() {
-    const cardItems = this.state.cards.map((card, i) => (
-      <li key={i} className="card-input-field">
-        <div className="card-q-a">
-          <p>
-            <label htmlFor={`card-question-${i}`}> Question</label>
-            <textarea
-              type="text"
-              className="card-question-input card-info"
-              name={`card-question-${i}`}
-              id={`card-question-${i}`}
-              defaultValue={card.question}
-              onChange={(e) =>
-                this.updateCard(card.id, "question", e.target.value)
-              }
-            />
-          </p>
-          <p>
-            <label htmlFor={`card-answer-${i}`}> Answer</label>
-            <textarea
-              type="text"
-              className="card-answer-input card-info"
-              name={`card-answer-${i}`}
-              id={`card-answer-${i}`}
-              defaultValue={card.answer}
-              onChange={(e) =>
-                this.updateCard(card.id, "answer", e.target.value)
-              }
-            />
-          </p>
-          <button
-            className="delete-card"
-            onClick={(e) => this.removeCard(card.id)}
-          >
-            {" "}
-            remove
-          </button>
-        </div>
-      </li>
-    ));
-
-    const { id } = this.state;
+    const { id = 0 } = this.props.match.params;
+    if (this.state.id !== Number(id)) {
+      const deck = id
+        ? this.context.decks.find((d) => d.id === Number(id))
+        : null;
+      if (deck && !this.state.cards.length) {
+        this.getCards(deck);
+      }
+    }
+    const cardItems = this.state.cards.length
+      ? this.state.cards.map((card, i) => (
+          <li key={i} className="card-input-field">
+            <div className="card-q-a">
+              <p>
+                <label htmlFor={`card-question-${i}`}> Question</label>
+                <textarea
+                  type="text"
+                  className="card-question-input card-info"
+                  name={`card-question-${i}`}
+                  id={`card-question-${i}`}
+                  defaultValue={card.question}
+                  onChange={(e) =>
+                    this.updateCard(card.id, "question", e.target.value)
+                  }
+                />
+              </p>
+              <p>
+                <label htmlFor={`card-answer-${i}`}> Answer</label>
+                <textarea
+                  type="text"
+                  className="card-answer-input card-info"
+                  name={`card-answer-${i}`}
+                  id={`card-answer-${i}`}
+                  defaultValue={card.answer}
+                  onChange={(e) =>
+                    this.updateCard(card.id, "answer", e.target.value)
+                  }
+                />
+              </p>
+              {this.state.editedCards.includes(card.id) && (
+                <button
+                  className="delete-card"
+                  onClick={(e) => this.saveCard(card.id)}
+                >
+                  {" "}
+                  save changes
+                </button>
+              )}
+              <button
+                className="delete-card"
+                onClick={(e) => this.removeCard(card.id)}
+              >
+                {" "}
+                remove
+              </button>
+            </div>
+          </li>
+        ))
+      : "";
 
     return (
       <div className="edit-deck-page">

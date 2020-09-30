@@ -29,6 +29,7 @@ class App extends Component {
 
       this.setState({ cards });
     },
+    setCards: (cards) => this.setState({ cards }),
     removeCard: (id) =>
       this.setState({ cards: this.state.cards.filter((c) => c.id !== id) }),
     addCard: (newCard) =>

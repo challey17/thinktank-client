@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../NavBar/NavBar";
 import Card from "../Card/Card";
 import Context from "../../Context";
+import { API_ENDPOINT } from "../../config";
+import TokenService from "../../services/token-service";
 
 export default class StudyMode extends React.Component {
   static contextType = Context;
@@ -10,12 +12,18 @@ export default class StudyMode extends React.Component {
     shownCardIndex: 0,
   };
 
-  // filter all cards by deckId
-  filterCards = () => {
-    const { cards } = this.context;
-    const { id } = this.props.match.params;
-    return cards.filter((card) => card.deckId === Number(id));
-  };
+  componentDidMount() {
+    fetch(`${API_ENDPOINT}/cards/${Number(this.props.match.params.id)}`, {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((cards) => {
+        this.context.setCards(cards);
+      });
+  }
 
   // map through cards matching deckId
   renderCards = (cards) => {
@@ -31,21 +39,19 @@ export default class StudyMode extends React.Component {
   };
 
   render() {
-    const { cards } = this.context;
-    //if cards have length, filter cards, else set to empty array
-    const filteredCards = cards.length > 0 ? this.filterCards() : [];
+    const { cards = [] } = this.context;
     return (
       <div>
         <Navbar />
-        {filteredCards.length > 0 ? (
+        {cards.length > 0 ? (
           <>
             <h2>
-              Card {this.state.shownCardIndex + 1} of {filteredCards.length}
+              Card {this.state.shownCardIndex + 1} of {cards.length}
             </h2>
-            <ul>{this.renderCards(filteredCards)}</ul>
+            <ul>{this.renderCards(cards)}</ul>
           </>
         ) : (
-          <p>No cards in deck</p>
+          <p>No cards in deck - or Loading....</p>
         )}
       </div>
     );
