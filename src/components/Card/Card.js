@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Context from "../Context";
+import Context from "../../Context";
 
 // weighted random for card rating
 //https://stackoverflow.com/questions/30203362/how-to-generate-a-random-weighted-distribution-of-elements

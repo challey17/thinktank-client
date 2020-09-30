@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import TokenService from "../services/token-service";
-import Context from "../Context";
+import TokenService from "../../services/token-service";
+import Context from "../../Context";
 
 class LoginForm extends Component {
   static contextType = Context;

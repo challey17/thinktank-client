@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../NavBar/NavBar";
-import Context from "../Context";
+import Context from "../../Context";
 import { v4 as uuidv4 } from "uuid";
 
-import config from "../config";
-import TokenService from "../services/token-service";
+import config from "../../config";
+import TokenService from "../../services/token-service";
 
 export default class DeckForm extends React.Component {
   static contextType = Context;
