@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../NavBar/NavBar";
 import Card from "../Card/Card";
 import Context from "../../Context";
 import { API_ENDPOINT } from "../../config";
@@ -42,7 +41,6 @@ export default class StudyMode extends React.Component {
     const { cards = [] } = this.context;
     return (
       <div>
-        <Navbar />
         {cards.length > 0 ? (
           <>
             <h2>

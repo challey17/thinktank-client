@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Context from "../../Context";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 
 import config from "../../config";
 import TokenService from "../../services/token-service";
@@ -58,8 +58,23 @@ export default class DeckForm extends React.Component {
 
   saveCard = (id) => {
     const card = this.state.cards.find((c) => c.id === id);
+
     if (card) {
+      const id = card.id;
+      const updatedCard = {
+        question: card.question,
+        answer: card.answer,
+      };
       // fetch put with that card PUT
+      fetch(`${config.API_ENDPOINT}/cards/${id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify(updatedCard),
+      });
+      //do i need .then?
       this.setState({
         editedCards: this.state.editedCards.filter((cid) => cid !== id),
       });
@@ -67,31 +82,59 @@ export default class DeckForm extends React.Component {
   };
 
   removeCard = (id) => {
-    // then
+    console.log(id);
 
-    this.setState(
-      { cards: this.state.cards.filter((c) => c.id !== id) },
-      () => {
-        // fetch delete to /api/cards/id
-      }
-    );
+    fetch(`${config.API_ENDPOINT}/cards/${id}`, {
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    });
+    this.setState({ cards: this.state.cards.filter((c) => c.id !== id) });
   };
 
   addCard = () => {
     const newCard = {
       answer: this.state.newCardAnswer,
-      deckId: this.state.id,
+      deck_id: this.state.id,
       question: this.state.newCardQuestion,
-      // in the future, remove the id
-      id: uuidv4(),
     };
     // fetch post to /api/cards to create the card, so you have the id
-    // then run setState to add it in
-    this.setState({
-      cards: [...this.state.cards, newCard],
-      newCardAnswer: "",
-      newCardQuestion: "",
-    });
+    fetch(`${config.API_ENDPOINT}/cards`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(newCard),
+    })
+      // then run setState to add it in
+      .then((res) => res.json())
+      .then((card) => {
+        this.setState({
+          cards: [...this.state.cards, card],
+          newCardAnswer: "",
+          newCardQuestion: "",
+        });
+      });
+  };
+
+  deleteDeck = () => {
+    fetch(
+      `${config.API_ENDPOINT}/decks/${Number(this.props.match.params.id)}`,
+      {
+        method: "delete",
+        headers: {
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+      }
+    )
+      .then(() => {
+        this.context.deleteDeck(this.state.id);
+      })
+      .then(() => {
+        this.props.history.push("/home");
+      });
   };
 
   handleSubmit = (e) => {
@@ -167,7 +210,7 @@ export default class DeckForm extends React.Component {
               </p>
               {this.state.editedCards.includes(card.id) && (
                 <button
-                  className="delete-card"
+                  className="save-changes-card"
                   onClick={(e) => this.saveCard(card.id)}
                 >
                   {" "}
@@ -250,6 +293,10 @@ export default class DeckForm extends React.Component {
             Save Changes
           </button>
           <Link to={`/study/${this.state.id}`}>Start Studying</Link>
+          <button className="delete-deck" onClick={(e) => this.deleteDeck()}>
+            {" "}
+            delete deck
+          </button>
         </form>
       </div>
     );

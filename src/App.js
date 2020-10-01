@@ -8,16 +8,16 @@ import Navbar from "./components/NavBar/NavBar";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import "./App.css";
 import Homepage from "./components/HomePage/HomePage";
-import { users, decks, cards } from "./STORE";
+//import { users, decks, cards } from "./STORE";
 import DeckForm from "./components/DeckForm/DeckForm";
 import Context from "./Context";
 import { API_ENDPOINT } from "./config";
 import TokenService from "./services/token-service";
 class App extends Component {
   state = {
-    users,
-    decks,
-    cards,
+    users: [],
+    decks: [],
+    cards: [],
     user_id: 0,
     updateCard: (id, key, value) => {
       const cards = this.state.cards.map((c) => {
@@ -29,6 +29,7 @@ class App extends Component {
 
       this.setState({ cards });
     },
+
     setCards: (cards) => this.setState({ cards }),
     removeCard: (id) =>
       this.setState({ cards: this.state.cards.filter((c) => c.id !== id) }),
@@ -48,6 +49,11 @@ class App extends Component {
     newDeck: (newDeck) =>
       this.setState({
         decks: [...this.state.decks, newDeck],
+      }),
+
+    deleteDeck: (id) =>
+      this.setState({
+        decks: this.state.decks.filter((deck) => deck.id !== id), //,
       }),
     logout: () => this.setState({ user_id: 0 }),
     login: (user_id) => this.setState({ user_id }),

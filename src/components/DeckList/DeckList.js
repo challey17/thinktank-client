@@ -6,9 +6,13 @@ export default class DeckList extends React.Component {
   static contextType = Context;
 
   render() {
-    console.log(this.context);
+    //console.log(this.context);
 
     const { decks = [] } = this.context;
+    console.log(this.context.user_id);
+    // const userDecks = decks.filter(
+    //   (deck) => deck.user_id == this.context.user_id
+    // );
     return (
       <ul>
         {decks.map((deck, i) => (
