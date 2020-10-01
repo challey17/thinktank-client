@@ -61,8 +61,17 @@ class App extends Component {
 
   componentDidMount() {
     if (TokenService.hasAuthToken()) {
+      fetch(`${API_ENDPOINT}/users`, {
+        method: "get",
+        headers: {
+          Authorization: `Bearer ${TokenService.getAuthToken()}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((user) => {
+          this.setState({ user_id: user.id });
+        });
       // fetch to the /api/users w/ the token to get the user_id
-      this.setState({ user_id: 1 });
     }
     fetch(`${API_ENDPOINT}/decks`, {
       method: "get",

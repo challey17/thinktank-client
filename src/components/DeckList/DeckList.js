@@ -9,13 +9,13 @@ export default class DeckList extends React.Component {
     //console.log(this.context);
 
     const { decks = [] } = this.context;
-    console.log(this.context.user_id);
-    // const userDecks = decks.filter(
-    //   (deck) => deck.user_id == this.context.user_id
-    // );
+    //console.log(this.context.user_id);
+    const userDecks = decks.filter(
+      (deck) => deck.user_id === this.context.user_id
+    );
     return (
       <ul>
-        {decks.map((deck, i) => (
+        {userDecks.map((deck, i) => (
           <Deck deck={deck} key={i} />
         ))}
       </ul>
