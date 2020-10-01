@@ -9,6 +9,7 @@ export default class StudyMode extends React.Component {
 
   state = {
     shownCardIndex: 0,
+    deckname: "",
   };
 
   componentDidMount() {
@@ -22,15 +23,6 @@ export default class StudyMode extends React.Component {
       .then((cards) => {
         this.context.setCards(cards);
       });
-    //i'm trying to get the deckname to display on the page (line 54)
-    // deck is an array with everydeck filtered out except the deck i want
-    const deck = this.context.decks.filter((deck) => {
-      return deck.id === Number(this.props.match.params.id);
-    });
-    console.log(deck);
-    const deckname = this.context.decks[0].deckname;
-    //console.log("deckname", deckname);
-    this.setState({ deckname: deckname });
   }
 
   // map through cards matching deckId
@@ -47,14 +39,21 @@ export default class StudyMode extends React.Component {
   };
 
   render() {
-    //figure out how to get deck.deckname for <h2>
-    //console.log(this.context.decks);
+    const deck = this.context.decks.filter((deck) => {
+      return deck.id === Number(this.props.match.params.id);
+    });
+    let deckname = null;
+
+    if (deck.length > 0) {
+      deckname = deck[0].deckname;
+    }
+
     const { cards = [] } = this.context;
     return (
       <div>
         {cards.length > 0 ? (
           <>
-            <h2>{this.state.deckname}</h2>
+            <h2>{deckname || this.state.deckname}</h2>
             <h4>
               Card {this.state.shownCardIndex + 1} of {cards.length}
             </h4>
