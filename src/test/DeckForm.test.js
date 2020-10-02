@@ -10,9 +10,7 @@ it("renders App component without crashing", () => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <DeckForm
-        match={{ params: { id: 1 }, isExact: true, path: "", url: "" }}
-      />
+      <DeckForm />
     </BrowserRouter>,
     div
   );

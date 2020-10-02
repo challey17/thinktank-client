@@ -13,7 +13,8 @@ export default class StudyMode extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`${API_ENDPOINT}/cards/${Number(this.props.match.params.id)}`, {
+    const { id = 0 } = this.props.match ? this.props.match.params : {};
+    fetch(`${API_ENDPOINT}/cards/${Number(id)}`, {
       method: "get",
       headers: {
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
