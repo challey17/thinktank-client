@@ -10,17 +10,11 @@ it("renders App component without crashing", () => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <DeckForm />
+      <DeckForm
+        match={{ params: { id: 1 }, isExact: true, path: "", url: "" }}
+      />
     </BrowserRouter>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
 });
-it("testing for match.params", () => {});
-// const wrapper = shallow(
-//   <Details
-//     required={true}
-//     match={{params: {id: 1}, isExact: true, path: "", url: ""}}
-//   />
-// );
-// expect(wrapper.containsMatchingElement(<h2>Details for 1</h2>)).toBeTruthy();

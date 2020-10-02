@@ -170,6 +170,7 @@ export default class DeckForm extends React.Component {
 
   render() {
     const { id = 0 } = this.props.match.params;
+    console.log(this.props);
     if (this.state.id !== Number(id)) {
       const deck = id
         ? this.context.decks.find((d) => d.id === Number(id))

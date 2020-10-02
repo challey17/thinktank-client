@@ -16,6 +16,7 @@ it("renders App component without crashing", () => {
       deckname: "",
     },
   ];
+  //need context somehow
   ReactDOM.render(
     <BrowserRouter>
       <StudyMode decks={decks} />
