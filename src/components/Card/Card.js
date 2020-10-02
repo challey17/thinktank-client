@@ -17,7 +17,7 @@ export default class Card extends Component {
     //all cards with matching deckId from StudyMode
     const { card } = this.props;
 
-    console.log(this.props);
+    //console.log(this.props);
     card.answer_showing = false;
 
     const ratingOnClick = (e) => {
