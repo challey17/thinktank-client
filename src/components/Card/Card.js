@@ -38,20 +38,10 @@ export default class Card extends Component {
         {this.state.answer_showing && (
           <div className="card container-back">
             <p>{card.answer}</p>
-            <div className="rating-container">
-              <p className="rating-hint">How well do you know this?</p>
-              <div className="rating-button-container">
-                <button className="difficulty-rating" onClick={ratingOnClick}>
-                  1 <p>not at all</p>
-                </button>
-                <button className="difficulty-rating" onClick={ratingOnClick}>
-                  2 <p>almost</p>
-                </button>
-                <button className="difficulty-rating" onClick={ratingOnClick}>
-                  3 <p>perfectly</p>
-                </button>
-              </div>
-            </div>
+
+            <button className="difficulty-rating" onClick={ratingOnClick}>
+              Next Card
+            </button>
           </div>
         )}
       </li>

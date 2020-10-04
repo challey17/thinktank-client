@@ -7,14 +7,12 @@ export default class HomePage extends Component {
     return (
       <div>
         <main className="homepage-body">
-          <header>
-            <p>what content here?</p>
-          </header>
+          <header></header>
+          <h2>Decks </h2>
           <section className="deck-display-container">
-            <h2>Decks </h2>
             <DeckList />
             <Link to="/createdeck" className="create-new-deck">
-              create new deck
+              create new flashcards
             </Link>
           </section>
         </main>

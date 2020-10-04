@@ -51,7 +51,7 @@ export default class StudyMode extends React.Component {
 
     const { cards = [] } = this.context;
     return (
-      <div>
+      <div className="studymode-page">
         {cards.length > 0 ? (
           <>
             <h2>{deckname || this.state.deckname}</h2>

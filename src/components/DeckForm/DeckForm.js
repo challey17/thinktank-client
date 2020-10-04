@@ -183,7 +183,7 @@ export default class DeckForm extends React.Component {
       ? this.state.cards.map((card, i) => (
           <li key={i} className="card-input-field">
             <div className="card-q-a">
-              <p>
+              <p className="input-container">
                 <label htmlFor={`card-question-${i}`}> Question</label>
                 <textarea
                   type="text"
@@ -196,7 +196,7 @@ export default class DeckForm extends React.Component {
                   }
                 />
               </p>
-              <p>
+              <p className="input-container">
                 <label htmlFor={`card-answer-${i}`}> Answer</label>
                 <textarea
                   type="text"
@@ -211,7 +211,7 @@ export default class DeckForm extends React.Component {
               </p>
               {this.state.editedCards.includes(card.id) && (
                 <button
-                  className="save-changes-card"
+                  className="edit-card-button"
                   onClick={(e) => this.saveCard(card.id)}
                 >
                   {" "}
@@ -219,7 +219,7 @@ export default class DeckForm extends React.Component {
                 </button>
               )}
               <button
-                className="delete-card"
+                className="edit-card-button"
                 onClick={(e) => this.removeCard(card.id)}
               >
                 {" "}
@@ -234,7 +234,9 @@ export default class DeckForm extends React.Component {
       <div className="edit-deck-page">
         <form onSubmit={this.handleSubmit}>
           <h2>{id ? "Edit Deck" : "Create Deck"}</h2>
-          <label htmlFor="deckname">Deck Title</label>
+          <label htmlFor="deckname" className="deck-label">
+            Deck Title
+          </label>
           <input
             type="text"
             className="deckname-input"
@@ -243,7 +245,7 @@ export default class DeckForm extends React.Component {
             value={this.state.deckname}
             onChange={(e) => this.setState({ deckname: e.target.value })}
           />
-          <button type="submit" className="save-deck-info">
+          <button type="submit" className="save-deck">
             {" "}
             Save
           </button>
@@ -254,7 +256,7 @@ export default class DeckForm extends React.Component {
             {this.state.id && (
               <li key="new-key" className="card-input-field">
                 <div className="card-q-a">
-                  <p>
+                  <p className="input-container">
                     <label htmlFor="card-question"> Question</label>
                     <textarea
                       type="text"
@@ -267,7 +269,7 @@ export default class DeckForm extends React.Component {
                       }
                     />
                   </p>
-                  <p>
+                  <p className="input-container">
                     <label htmlFor="card-answer"> Answer</label>
                     <textarea
                       type="text"
@@ -288,16 +290,16 @@ export default class DeckForm extends React.Component {
               </li>
             )}
           </ul>
-
-          <button type="submit" className="save-deck-info">
-            {" "}
-            Save Changes
-          </button>
-          <Link to={`/study/${this.state.id}`}>Start Studying</Link>
-          <button className="delete-deck" onClick={(e) => this.deleteDeck()}>
+          <button
+            className="delete-deck-button"
+            onClick={(e) => this.deleteDeck()}
+          >
             {" "}
             delete deck
           </button>
+          <Link to={`/study/${this.state.id}`} className="finish-button">
+            Start Studying
+          </Link>
         </form>
       </div>
     );

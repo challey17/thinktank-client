@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 export default function LandingPage() {
   return (
     <div className="landing-page">
-      <h2>ThinkTank</h2>
+      <h1>ThinkTank</h1>
       <p>
-        Make what you learn really stick. Create and study flaschcards to retain
-        what you know or solidify new concepts .
+        Create and study flaschcards to retain what you know or solidify new
+        concepts. Make sure you know what you've learned.
       </p>
+      <p>||demo user||</p>
+      <p>login : demo </p>
+      <p>password: demodemo1234</p>
       <Link to="/login" className="landing-button">
         {" "}
         login
@@ -17,9 +20,6 @@ export default function LandingPage() {
         {" "}
         sign-up
       </Link>
-      <p>
-        <Link to="/home">Browse Decks without Logging In</Link>
-      </p>
     </div>
   );
 }

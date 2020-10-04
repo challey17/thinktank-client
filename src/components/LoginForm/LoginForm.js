@@ -31,37 +31,39 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <form className="login" onSubmit={(e) => this.handleSubmit(e)}>
-        <h2>Login</h2>
-        <div className="form-group">
-          <label htmlFor="name">Username</label>
-          <input
-            type="text"
-            className="login__control"
-            name="name"
-            id="name"
-            value={this.state.name}
-            onChange={(e) => this.setState({ name: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="login__control"
-            name="password"
-            id="password"
-            value={this.state.password}
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
-        </div>
+      <div className="login-page">
+        <form className="login" onSubmit={(e) => this.handleSubmit(e)}>
+          <h2>Login</h2>
+          <div className="form-group">
+            <label htmlFor="name">Username</label>
+            <input
+              type="text"
+              className="login__control"
+              name="name"
+              id="name"
+              value={this.state.name}
+              onChange={(e) => this.setState({ name: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="login__control"
+              name="password"
+              id="password"
+              value={this.state.password}
+              onChange={(e) => this.setState({ password: e.target.value })}
+            />
+          </div>
 
-        <div className="login__button">
-          <button type="submit" className="login__button">
-            Login
-          </button>
-        </div>
-      </form>
+          <div className="login-div">
+            <button type="submit" className="login__button">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

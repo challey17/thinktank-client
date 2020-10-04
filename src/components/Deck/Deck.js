@@ -7,14 +7,16 @@ export default class Deck extends React.Component {
     const { deck } = this.props;
     return (
       <li className="deck-list-view">
-        <Link to={`/study/${deck.id}`} className="deck-link">
+        <Link to={`/study/${deck.id}`} className="deck-link deck-title">
           <h1> {deck.deckname} </h1>
         </Link>
-        <Link to={`/study/${deck.id}`} className="deck-link">
+        <Link to={`/study/${deck.id}`} className="study-btn">
           study
         </Link>
 
-        <Link to={`/editdeck/${deck.id}`}>edit</Link>
+        <Link to={`/editdeck/${deck.id}`} className="edit-btn">
+          edit
+        </Link>
       </li>
     );
   }

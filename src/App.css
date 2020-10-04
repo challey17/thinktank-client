@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box;
 }
+html {
+  background-color: #232225;
+  background-color: #232225;
+}
 
 body {
   margin: 0;
@@ -8,11 +12,12 @@ body {
 
 .App {
   margin: 0;
-  background-color: #ffffff;
+  background-color: #232225;
+
   font-family: "Roboto", sans-serif;
 
   font-size: 20px;
-  color: black;
+  color: white;
   text-align: center;
   line-height: 1.5;
 }
@@ -21,6 +26,7 @@ body {
   margin-top: 10%;
   padding-top: 5px;
   padding-bottom: 5px;
+  height: 100vh;
 }
 
 .landing-page h2 {
@@ -31,9 +37,10 @@ body {
   padding: 10px;
 }
 .landing-button {
-  border: 1px solid;
+  border: 1px solid white;
+
   border-radius: 4px;
-  color: black;
+  color: white;
   text-decoration: none;
   margin: 10px;
   padding: 5px;
@@ -41,9 +48,12 @@ body {
 
 /*Registration form */
 
+.registration-page {
+  height: 100vh;
+}
+
 .registration {
-  border: 2px solid;
-  border-radius: 5px;
+  border-bottom: 1px solid;
 
   display: flex;
   flex-direction: column;
@@ -61,12 +71,22 @@ body {
   margin: 8px;
 }
 
+.registration__button {
+  border: 1px solid;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
 /*Login form */
-
+.login-page {
+  height: 100vh;
+}
 .login {
-  border: 2px solid;
-  border-radius: 5px;
-
+  border-bottom: 1px solid;
+  height: 100 vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,78 +103,197 @@ body {
   margin: 8px;
 }
 
+.login__button {
+  border: 1px solid white;
+  background-color: #232225;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
 /* NAV */
 
 .navbar {
-  border-bottom: 1px solid;
+  border-bottom: 0.5px solid;
   padding-bottom: 5px;
   display: flex;
   flex-direction: row;
   min-height: 40px;
-  background-color: lightslategray;
+  background-color: #0e0b16;
   align-items: center;
   justify-content: space-between;
 }
+
 .navlinks {
   padding: 10px;
   text-decoration: none;
-  color: black;
+
+  color: white;
 }
 
-/* homepage main page */
+a {
+  padding: 10px;
+  text-decoration: none;
 
-header {
-  border: 1px solid;
-  padding: 12% 0;
+  color: white;
 }
+
+/*homepage main page */
 
 .deck-display-container {
-  background-color: rgb(219, 199, 202);
+  margin: auto;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.create-new-deck {
-  border: 1px solid;
-  min-height: 50px;
-  min-width: 50px;
-  text-decoration: none;
-}
-
-.decklist {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .deck-list-view {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+  background-color: #e7dfdd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  width: 80vw;
+  max-width: 80%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.decklist h2 {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.deck-link {
+.deck-link,
+.deck-title {
   text-decoration: none;
   color: black;
-  width: 80vw;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
 
+ul {
+  margin: auto;
+  padding: 0;
+}
+
+.study-btn {
+  border: 0.5px solid;
+  margin-bottom: 5px;
+
+  background-color: #130f20;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 4px 15px 4px;
+}
+.edit-btn {
+  border: 0.5px solid;
+  margin-bottom: 5px;
+
+  background-color: #9e8aa6;
+  color: black;
+  text-decoration: none;
+  margin: 10px;
+  padding: 4px 15px 4px;
+}
+
+.create-new-deck {
+  background-color: #7e6ead;
+  color: black;
+  min-height: 50px;
+  min-width: 50px;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* edit deck /create deck form */
+
+.deck-label {
+  padding: 5px;
+}
+
+.save-deck {
+  border: 1px solid white;
+  background-color: #232225;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+.card-q-a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+  border-bottom: 2px solid black;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.add-card {
+  border: 1px solid white;
+  background-color: #232225;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+.edit-card-button {
+  border: 1px solid white;
+  background-color: #232225;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+.finish-button {
+  border: 1px solid white;
+  background-color: #7e6ead;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+.delete-deck-button {
+  border: 1px solid white;
+  background-color: #876771;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 5px;
+}
 
 /* study cards page */
 
+.studymode-page {
+  height: 100%;
+}
+
 li {
   list-style: none;
+}
+
+.card-container {
+  height: fit-content;
 }
 .card {
   display: flex;
@@ -169,6 +308,9 @@ li {
 .reveal-answer {
   height: 40px;
 }
+/*
+save for later
+
 .rating-container {
   display: flex;
   flex-direction: column;
@@ -180,12 +322,7 @@ li {
 
   justify-content: space-evenly;
 }
+*/
 .difficulty-rating {
-  width: 80px;
-}
-
-.card-q-a {
-  padding: 20px;
-  margin: 20px;
-  border-bottom: 2px solid black;
+  height: 40px;
 }
