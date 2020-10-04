@@ -6,8 +6,8 @@ export default function LandingPage() {
     <div className="landing-page">
       <h1>ThinkTank</h1>
       <p>
-        Create and study flaschcards to retain what you know or solidify new
-        concepts. Make sure you know what you've learned.
+        Create and study flash cards to retain what you know or solidify new
+        concepts. Make sure you know what you took the time to learn.
       </p>
       <p>||demo user||</p>
       <p>login : demo </p>

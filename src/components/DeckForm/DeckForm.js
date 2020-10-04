@@ -20,7 +20,6 @@ export default class DeckForm extends React.Component {
   };
 
   getCards(deck) {
-    console.log("getting cards for deck...");
     fetch(
       `${config.API_ENDPOINT}/cards/${Number(this.props.match.params.id)}`,
       {
@@ -82,8 +81,6 @@ export default class DeckForm extends React.Component {
   };
 
   removeCard = (id) => {
-    console.log(id);
-
     fetch(`${config.API_ENDPOINT}/cards/${id}`, {
       method: "delete",
       headers: {
